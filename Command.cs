@@ -26,13 +26,19 @@ namespace RAA_View_Renumber
             Application app = uiapp.Application;
             Document doc = uidoc.Document;
 
-            // put any code needed for the form here
+            // first check if active view is a sheet
 
-            // open form
+            View activeView = doc.ActiveView;
+            if (activeView.ViewType != ViewType.DrawingSheet)
+            {
+                TaskDialog.Show("Error", "Please run this command from a Sheet View.\n\nIf you have a Sheet View Activated, please deactivate it.");
+                return Result.Failed;
+            }
+                // open form
             MyForm currentForm = new MyForm()
             {
                 Width = 800,
-                Height = 450,
+                Height = 550,
                 WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen,
                 Topmost = true,
             };
