@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RevitAddIns>
+  <AddIn Type="Command">
+    <Text>Command RAA_View_Renumber</Text>
+    <Description>Some description for RAA_View_Renumber</Description>
+    <Assembly>RAA_View_Renumber.dll</Assembly>
+    <FullClassName>RAA_View_Renumber.Command</FullClassName>
+    <ClientId>438b313a-7d66-42c1-8bb2-aa20762ebcd6</ClientId>
+    <VendorId>com.YOUR COMPANY NAME</VendorId>
+    <VendorDescription>YOUR COMPANY NAME, YOUR COMPANY URL</VendorDescription>
+  </AddIn>
+  <AddIn Type="Application">
+    <Name>Application RAA_View_Renumber</Name>
+    <Assembly>RAA_View_Renumber.dll</Assembly>
+    <FullClassName>RAA_View_Renumber.App</FullClassName>
+    <ClientId>91b67d7f-3387-4f04-8fce-19b3e4f7e946</ClientId>
+    <VendorId>com.YOUR COMPANY NAME</VendorId>
+    <VendorDescription>YOUR COMPANY NAME, YOUR COMPANY URL</VendorDescription>
+  </AddIn>
+</RevitAddIns>
