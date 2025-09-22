@@ -104,8 +104,6 @@ namespace RAA_View_Renumber
 
             SetViewportNumbers(uidoc, refList, renumberStart);
 
-            // get form data and do something
-
             return Result.Succeeded;
         }
 
