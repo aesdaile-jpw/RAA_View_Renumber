@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Autodesk.Revit.DB;
+using Autodesk.Revit.UI;
 
 
 namespace RAA_View_Renumber
@@ -21,14 +23,49 @@ namespace RAA_View_Renumber
     /// </summary>
     public partial class MyForm : Window
     {
-        public MyForm()
+        public Document myDoc;
+        public MyForm(Document doc, List<string> viewList, bool selectButton)
         {
             InitializeComponent();
+            myDoc = doc;
+            if (viewList == null)
+            {
+                lbxViews.Items.Add("Select views on the sheet in the order you want to renumber them.");
+            }
+            else
+            {
+                foreach (string view in viewList)
+                {
+                    lbxViews.Items.Add(view);
+                }
+            }
+            
+            for (int i = 1; i <= 10; i++)
+            {
+                cbxViewNumber.Items.Add(i.ToString());
+            }
+
+            btnSelect.IsEnabled = selectButton;
         }
 
+        public string GetComboBoxValue()
+        {
+            return cbxViewNumber.SelectedItem.ToString();
+        }
+
+        public List<string> GetListBoxValues()
+        {
+            List<string> selectedValues = new List<string>();
+            foreach (var item in lbxViews.SelectedItems)
+            {
+                selectedValues.Add(item.ToString());
+            }
+            return selectedValues;
+        }
         private void btnSelect_Click(object sender, RoutedEventArgs e)
         {
-
+            this.DialogResult = false;
+            this.Close();
         }
 
         private void btnOK_Click(object sender, RoutedEventArgs e)

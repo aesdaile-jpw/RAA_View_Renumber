@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <RevitAddIns>
-  <AddIn Type="Command">
+  <!--<AddIn Type="Command">
     <Text>Command RAA_View_Renumber</Text>
     <Description>Some description for RAA_View_Renumber</Description>
     <Assembly>RAA_View_Renumber.dll</Assembly>
@@ -8,7 +8,7 @@
     <ClientId>438b313a-7d66-42c1-8bb2-aa20762ebcd6</ClientId>
     <VendorId>com.YOUR COMPANY NAME</VendorId>
     <VendorDescription>YOUR COMPANY NAME, YOUR COMPANY URL</VendorDescription>
-  </AddIn>
+  </AddIn>-->
   <AddIn Type="Application">
     <Name>Application RAA_View_Renumber</Name>
     <Assembly>RAA_View_Renumber.dll</Assembly>

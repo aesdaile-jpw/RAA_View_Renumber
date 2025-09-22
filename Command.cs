@@ -34,8 +34,8 @@ namespace RAA_View_Renumber
                 TaskDialog.Show("Error", "Please run this command from a Sheet View.\n\nIf you have a Sheet View Activated, please deactivate it.");
                 return Result.Failed;
             }
-                // open form
-            MyForm currentForm = new MyForm()
+            // open form
+            MyForm currentForm = new MyForm(doc, null, true)
             {
                 Width = 800,
                 Height = 550,
@@ -44,6 +44,65 @@ namespace RAA_View_Renumber
             };
 
             currentForm.ShowDialog();
+
+            List<Reference> refList = new List<Reference>();
+            bool flag = true;
+            while (flag)
+            {
+                try
+                {
+                    Reference tempRef = uidoc.Selection.PickObject(ObjectType.Element, "Please select an element. Press 'Esc' to stop selecting.");
+                    refList.Add(tempRef);
+                }
+                catch (Autodesk.Revit.Exceptions.OperationCanceledException)
+                {
+                    flag = false;
+                }
+            }
+
+            if (refList.Count == 0)
+            {
+                TaskDialog.Show("Info", "No elements were selected.");
+                return Result.Failed;
+            }
+
+            List<string> viewList = new List<string>();
+            foreach (Reference r in refList)
+            {
+                Element e = doc.GetElement(r);
+                if (e is Viewport)
+                {
+                    Viewport vp = e as Viewport;
+                    ElementId viewId = vp.ViewId;
+                    View v = doc.GetElement(viewId) as View;
+                    string viewName = v.Name;
+                    viewList.Add(viewName);
+                }
+            }
+
+            int viewsOnSheet = GetViewCountOnActiveSheet(uidoc);
+            if (viewsOnSheet != viewList.Count)
+            {
+                TaskDialog.Show("Error", "The number of selected views does not match the number of views on the active sheet.\n\nPlease try again.");
+                return Result.Failed;
+            }
+
+
+            MyForm currentForm2 = new MyForm(doc, viewList, false)
+            {
+                Width = 800,
+                Height = 550,
+                WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen,
+                Topmost = true,
+            };
+
+            currentForm2.ShowDialog();
+
+            string startValue = currentForm2.GetComboBoxValue();
+
+            int renumberStart = int.Parse(startValue);
+
+            SetViewportNumbers(uidoc, refList, renumberStart);
 
             // get form data and do something
 
@@ -54,6 +113,67 @@ namespace RAA_View_Renumber
         {
             var method = MethodBase.GetCurrentMethod().DeclaringType?.FullName;
             return method;
+        }
+
+        public static int GetViewCountOnActiveSheet(UIDocument uiDoc)
+        {
+            // Get the active view
+            ViewSheet activeSheet = uiDoc.ActiveView as ViewSheet;
+
+            if (activeSheet == null)
+            {
+                TaskDialog.Show("Error", "The active view is not a sheet.");
+                return 0;
+            }
+
+            // Get all the viewport elements on the sheet
+            Document doc = uiDoc.Document;
+            var viewports = new FilteredElementCollector(doc, activeSheet.Id)
+                            .OfClass(typeof(Viewport))
+                            .ToElements();
+
+            // Return the count of viewports (each viewport corresponds to a view)
+            return viewports.Count;
+        }
+
+        public static void SetViewportNumbers(UIDocument uiDoc, List<Reference> refList, int startNumber)
+        {
+            Document doc = uiDoc.Document;
+            using (Transaction tx = new Transaction(doc))
+            {
+                tx.Start("Renumber Viewports");
+                int currentNumber = startNumber;
+                ViewSheet activeSheet = uiDoc.ActiveView as ViewSheet;
+                foreach (Reference r in refList)
+                {
+                    Element e = doc.GetElement(r);
+                    if (e is Viewport)
+                    {
+                        Viewport vp = e as Viewport;
+                        ElementId viewId = vp.ViewId;
+                        View v = doc.GetElement(viewId) as View;
+                        string viewName = v.Name;
+                        vp.get_Parameter(BuiltInParameter.VIEWPORT_DETAIL_NUMBER).Set(currentNumber.ToString() + "X");
+                        currentNumber++;
+                    }
+                }
+                currentNumber = startNumber;
+                foreach (Reference r in refList)
+                {
+                    Element e = doc.GetElement(r);
+                    if (e is Viewport)
+                    {
+                        Viewport vp = e as Viewport;
+                        ElementId viewId = vp.ViewId;
+                        View v = doc.GetElement(viewId) as View;
+                        string viewName = v.Name;
+                        vp.get_Parameter(BuiltInParameter.VIEWPORT_DETAIL_NUMBER).Set(currentNumber.ToString());
+                        currentNumber++;
+                    }
+                }
+                tx.Commit();
+                tx.Dispose();
+            }
         }
     }
 }
