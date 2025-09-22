@@ -139,6 +139,10 @@ namespace RAA_View_Renumber
         public static void SetViewportNumbers(UIDocument uiDoc, List<Reference> refList, int startNumber)
         {
             Document doc = uiDoc.Document;
+            List<string> viewList = new List<string>();
+            List<string> numberList = new List<string>();
+            List<string> viewIDList = new List<string>();
+
             using (Transaction tx = new Transaction(doc))
             {
                 tx.Start("Renumber Viewports");
@@ -167,12 +171,25 @@ namespace RAA_View_Renumber
                         ElementId viewId = vp.ViewId;
                         View v = doc.GetElement(viewId) as View;
                         string viewName = v.Name;
+                        viewList.Add(viewName);
+                        numberList.Add(currentNumber.ToString());
+                        viewIDList.Add(viewId.ToString());
                         vp.get_Parameter(BuiltInParameter.VIEWPORT_DETAIL_NUMBER).Set(currentNumber.ToString());
                         currentNumber++;
                     }
                 }
                 tx.Commit();
                 tx.Dispose();
+
+                MyForm2 currentForm2 = new MyForm2(doc, viewList, viewIDList, numberList)
+                {
+                    Width = 800,
+                    Height = 550,
+                    WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen,
+                    Topmost = true,
+                };
+
+                currentForm2.ShowDialog();
             }
         }
     }

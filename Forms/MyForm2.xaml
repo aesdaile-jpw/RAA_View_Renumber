@@ -1,0 +1,33 @@
+﻿<Window x:Class="RAA_View_Renumber.MyForm2"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:RAA_View_Renumber"
+             mc:Ignorable="d" 
+             d:DesignHeight="550" d:DesignWidth="800" Title="Revit Add-In Academy Skills 2" ResizeMode="NoResize">
+    <Border Margin="10">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="30"/>
+            </Grid.RowDefinitions>
+
+            <Label x:Name="label" Content="Results" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontFamily="Arial Rounded MT Bold" FontSize="48"/>
+            <Label x:Name="label1" Content="The following views were renumbered:" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="1" VerticalAlignment="Center" FontFamily="Segoe UI" FontSize="20"/>
+            <Label x:Name="label2" Content="View name" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="2" VerticalAlignment="Center" FontFamily="Segoe UI" FontSize="16"/>
+            <Label x:Name="label3" Content="View Number" HorizontalAlignment="Center" Margin="300,0,0,0" Grid.Row="2" VerticalAlignment="Center" FontFamily="Segoe UI" FontSize="16"/>
+            <Label x:Name="label4" Content="View ID" HorizontalAlignment="Right" Margin="10,0,15,0" Grid.Row="2" VerticalAlignment="Center" FontFamily="Segoe UI" FontSize="16"/>
+            <ListBox x:Name="lbxViewName" Grid.Row="3" Margin="10,10,10,10" FontSize="16" SelectionMode="Extended"/>
+            <Button x:Name="BtnClose" Grid.Column="0" Content="Close" HorizontalAlignment="Center" Grid.Row="5" VerticalAlignment="Center" Margin="10,0,10,0" Width="60" Height="35" FontSize="16" Click="BtnClose_Click"/>
+            <!--<DataGrid x:Name="dataGrid" Grid.Row="3" d:ItemsSource="{d:SampleData ItemCount=5}"/>-->
+
+        </Grid>
+    </Border>
+
+</Window>

@@ -45,7 +45,7 @@ namespace RAA_View_Renumber
                 cbxViewNumber.Items.Add(i.ToString());
             }
 
-            btnSelect.IsEnabled = selectButton;
+            BtnSelect.IsEnabled = selectButton;
         }
 
         public string GetComboBoxValue()
@@ -62,19 +62,19 @@ namespace RAA_View_Renumber
             }
             return selectedValues;
         }
-        private void btnSelect_Click(object sender, RoutedEventArgs e)
+        private void BtnSelect_Click(object sender, RoutedEventArgs e)
         {
             this.DialogResult = false;
             this.Close();
         }
 
-        private void btnOK_Click(object sender, RoutedEventArgs e)
+        private void BtnOK_Click(object sender, RoutedEventArgs e)
         {
             this.DialogResult = true;
             this.Close();
         }
 
-        private void btnCancel_Click(object sender, RoutedEventArgs e)
+        private void BtnCancel_Click(object sender, RoutedEventArgs e)
         {
             this.DialogResult = false;
             this.Close();
