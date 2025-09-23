@@ -46,6 +46,11 @@ namespace RAA_View_Renumber
 
             currentForm.ShowDialog();
 
+            if (currentForm.DialogResult != true)
+            {
+                return Result.Cancelled;
+            }
+
             List<Reference> refList = new List<Reference>();
             bool flag = true;
             while (flag)
@@ -98,6 +103,11 @@ namespace RAA_View_Renumber
             };
 
             currentForm2.ShowDialog();
+
+            if (currentForm2.DialogResult != true)
+            {
+                return Result.Cancelled;
+            }
 
             string startValue = currentForm2.GetComboBoxValue();
 
