@@ -166,7 +166,7 @@ namespace RAA_View_Renumber
                         ElementId viewId = vp.ViewId;
                         View v = doc.GetElement(viewId) as View;
                         string viewName = v.Name;
-                        vp.get_Parameter(BuiltInParameter.VIEWPORT_DETAIL_NUMBER).Set(currentNumber.ToString() + "X");
+                        vp.get_Parameter(BuiltInParameter.VIEWPORT_DETAIL_NUMBER).Set("X" + currentNumber.ToString());
                         currentNumber++;
                     }
                 }

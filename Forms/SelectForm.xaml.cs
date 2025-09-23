@@ -34,13 +34,14 @@ namespace RAA_View_Renumber
             }
             else
             {
+                lbxViews.Items.Clear();
                 foreach (string view in viewList)
                 {
                     lbxViews.Items.Add(view);
                 }
             }
             
-            for (int i = 1; i <= 10; i++)
+            for (int i = 1; i <= 20; i++)
             {
                 cbxViewNumber.Items.Add(i.ToString());
             }
