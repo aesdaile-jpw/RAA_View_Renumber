@@ -36,7 +36,7 @@ namespace RAA_View_Renumber
                 return Result.Failed;
             }
             // open form
-            MyForm currentForm = new MyForm(doc, null, true)
+            SelectForm currentForm = new SelectForm(doc, null, true)
             {
                 Width = 800,
                 Height = 550,
@@ -89,7 +89,7 @@ namespace RAA_View_Renumber
             }
 
 
-            MyForm currentForm2 = new MyForm(doc, viewList, false)
+            SelectForm currentForm2 = new SelectForm(doc, viewList, false)
             {
                 Width = 800,
                 Height = 550,
@@ -180,7 +180,7 @@ namespace RAA_View_Renumber
                 tx.Commit();
                 tx.Dispose();
 
-                MyForm2 currentForm3 = new MyForm2(doc, viewList, viewIDList, numberList)
+                ResultForm currentForm3 = new ResultForm(doc, viewList, viewIDList, numberList)
                 {
                     Width = 800,
                     Height = 550,

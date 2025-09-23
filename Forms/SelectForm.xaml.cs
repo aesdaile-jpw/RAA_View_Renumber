@@ -21,10 +21,10 @@ namespace RAA_View_Renumber
     /// <summary>
     /// Interaction logic for Window.xaml
     /// </summary>
-    public partial class MyForm : Window
+    public partial class SelectForm : Window
     {
         public Document myDoc;
-        public MyForm(Document doc, List<string> viewList, bool selectButton)
+        public SelectForm(Document doc, List<string> viewList, bool selectButton)
         {
             InitializeComponent();
             myDoc = doc;
