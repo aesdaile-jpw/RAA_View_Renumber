@@ -64,7 +64,7 @@ namespace RAA_View_Renumber
         }
         private void BtnSelect_Click(object sender, RoutedEventArgs e)
         {
-            this.DialogResult = false;
+            this.DialogResult = true;
             this.Close();
         }
 
