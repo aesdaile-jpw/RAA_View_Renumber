@@ -180,7 +180,7 @@ namespace RAA_View_Renumber
                 tx.Commit();
                 tx.Dispose();
 
-                MyForm2 currentForm2 = new MyForm2(doc, viewList, viewIDList, numberList)
+                MyForm2 currentForm3 = new MyForm2(doc, viewList, viewIDList, numberList)
                 {
                     Width = 800,
                     Height = 550,
@@ -188,7 +188,7 @@ namespace RAA_View_Renumber
                     Topmost = true,
                 };
 
-                currentForm2.ShowDialog();
+                currentForm3.ShowDialog();
             }
         }
     }
