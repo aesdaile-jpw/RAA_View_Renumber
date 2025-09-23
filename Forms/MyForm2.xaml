@@ -20,13 +20,15 @@
 
             <Label x:Name="label" Content="Results" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontFamily="Arial Rounded MT Bold" FontSize="48"/>
             <Label x:Name="label1" Content="The following views were renumbered:" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="1" VerticalAlignment="Center" FontFamily="Segoe UI" FontSize="20"/>
-            <Label x:Name="label2" Content="View name" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="2" VerticalAlignment="Center" FontFamily="Segoe UI" FontSize="16"/>
-            <Label x:Name="label3" Content="View Number" HorizontalAlignment="Center" Margin="300,0,0,0" Grid.Row="2" VerticalAlignment="Center" FontFamily="Segoe UI" FontSize="16"/>
-            <Label x:Name="label4" Content="View ID" HorizontalAlignment="Right" Margin="10,0,15,0" Grid.Row="2" VerticalAlignment="Center" FontFamily="Segoe UI" FontSize="16"/>
-            <ListBox x:Name="lbxViewName" Grid.Row="3" Margin="10,10,10,10" FontSize="16" SelectionMode="Extended"/>
+            <!--<ListBox x:Name="lbxViewName" Grid.Row="3" Margin="10,10,10,10" FontSize="16" SelectionMode="Extended"/>-->
             <Button x:Name="BtnClose" Grid.Column="0" Content="Close" HorizontalAlignment="Center" Grid.Row="5" VerticalAlignment="Center" Margin="10,0,10,0" Width="60" Height="35" FontSize="16" Click="BtnClose_Click"/>
-            <!--<DataGrid x:Name="dataGrid" Grid.Row="3" d:ItemsSource="{d:SampleData ItemCount=5}"/>-->
-
+            <DataGrid x:Name="TextDataGrid" ItemsSource="{Binding Rows}" AutoGenerateColumns="False" HeadersVisibility="Column" Grid.Row="3">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="View Name" Binding="{Binding Column1}" FontSize="14" Width="575" CanUserResize="False" />
+                    <DataGridTextColumn Header="View Number" Binding="{Binding Column2}" FontSize="14" />
+                    <DataGridTextColumn Header="Element ID" Binding="{Binding Column3}" FontSize="14" />
+                </DataGrid.Columns>
+            </DataGrid>
         </Grid>
     </Border>
 

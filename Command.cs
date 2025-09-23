@@ -7,6 +7,7 @@ using Autodesk.Revit.UI.Selection;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Reflection;
 
 #endregion
@@ -188,6 +189,35 @@ namespace RAA_View_Renumber
                 };
 
                 currentForm2.ShowDialog();
+            }
+        }
+    }
+
+    public class DataGridRow
+    {
+        public string Column1 { get; set; }
+        public string Column2 { get; set; }
+        public string Column3 { get; set; }
+    }
+
+    public class DataGridViewModel
+    {
+        public List<DataGridRow> Rows { get; set; }
+
+        public DataGridViewModel(List<string> list1, List<string> list2, List<string> list3)
+        {
+            Rows = new List<DataGridRow>();
+
+            int maxCount = new[] { list1.Count, list2.Count, list3.Count }.Max();
+
+            for (int i = 0; i < maxCount; i++)
+            {
+                Rows.Add(new DataGridRow
+                {
+                    Column1 = i < list1.Count ? list1[i] : string.Empty,
+                    Column2 = i < list2.Count ? list2[i] : string.Empty,
+                    Column3 = i < list3.Count ? list3[i] : string.Empty
+                });
             }
         }
     }

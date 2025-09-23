@@ -28,10 +28,11 @@ namespace RAA_View_Renumber
         {
             InitializeComponent();
             myDoc = doc;
-            for (int i = 0; i < viewList.Count; i++)
-            {
-                lbxViewName.Items.Add(viewList[i] + "\t\t\t\t\t\t\t\t " + viewNumber[i] + "\t\t " + viewID[i]);
-            }
+            //for (int i = 0; i < viewList.Count; i++)
+            //{
+            //    lbxViewName.Items.Add(viewList[i] + "\t\t\t\t\t\t\t\t " + viewNumber[i] + "\t\t " + viewID[i]);
+            //}
+            DataContext = new DataGridViewModel(viewList, viewNumber, viewID);
 
         }
 
