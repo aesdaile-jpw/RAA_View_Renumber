@@ -33,7 +33,6 @@ namespace RAA_View_Renumber
             //    lbxViewName.Items.Add(viewList[i] + "\t\t\t\t\t\t\t\t " + viewNumber[i] + "\t\t " + viewID[i]);
             //}
             DataContext = new DataGridViewModel(viewList, viewNumber, viewID);
-
         }
 
         private void BtnClose_Click(object sender, RoutedEventArgs e)
