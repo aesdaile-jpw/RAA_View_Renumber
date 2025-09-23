@@ -163,9 +163,6 @@ namespace RAA_View_Renumber
                     if (e is Viewport)
                     {
                         Viewport vp = e as Viewport;
-                        ElementId viewId = vp.ViewId;
-                        View v = doc.GetElement(viewId) as View;
-                        string viewName = v.Name;
                         vp.get_Parameter(BuiltInParameter.VIEWPORT_DETAIL_NUMBER).Set("X" + currentNumber.ToString());
                         currentNumber++;
                     }
@@ -188,7 +185,6 @@ namespace RAA_View_Renumber
                     }
                 }
                 tx.Commit();
-                tx.Dispose();
 
                 ResultForm currentForm3 = new ResultForm(doc, viewList, viewIDList, numberList)
                 {
