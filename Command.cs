@@ -32,7 +32,7 @@ namespace RAA_View_Renumber
             View activeView = doc.ActiveView;
             if (activeView.ViewType != ViewType.DrawingSheet)
             {
-                TaskDialog.Show("Error", "Please run this command from a Sheet View.\n\nIf you have a Sheet View Activated, please deactivate it.");
+                TaskDialog.Show("Error", "Please run this command from a Sheet View.\n\nIf you have a Sheet Viewport Activated, please deactivate it.");
                 return Result.Failed;
             }
             // open form
@@ -176,8 +176,9 @@ namespace RAA_View_Renumber
                         Viewport vp = e as Viewport;
                         ElementId viewId = vp.ViewId;
                         View v = doc.GetElement(viewId) as View;
-                        string viewName = v.Name;
-                        viewList.Add(viewName);
+                        //string viewName = v.Name;
+                        Parameter viewName = vp.get_Parameter(BuiltInParameter.VIEWPORT_VIEW_NAME);
+                        viewList.Add(viewName.AsString());
                         numberList.Add(currentNumber.ToString());
                         viewIDList.Add(viewId.ToString());
                         vp.get_Parameter(BuiltInParameter.VIEWPORT_DETAIL_NUMBER).Set(currentNumber.ToString());
